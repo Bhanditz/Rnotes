@@ -22,7 +22,7 @@ The cloud point measurement.
 Polynomial regression. Simple plots.
 }
 \source{
-Draper \& Smith, "Applied Regression Analysis", page 162.
+Draper & Smith, "Applied Regression Analysis", page 162.
 }
 \keyword{datasets}
 % Converted by Sd2Rd version 0.3-3.

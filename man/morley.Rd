@@ -1,14 +1,12 @@
 \name{morley}
 \alias{morley}
 \title{
-The Michaelson-Morley Speed of Light Data
+Michaelson--Morley Speed of Light Data
 }
 \description{
 The classical data of Michaelson and Morley on the speed of light.  The
 data consists of five experiments, each consisting of 20 consecutive
 "runs".  The response is the speed of light measurement, suitably coded.
-
-
 }
 \details{
 The data is here viewed as a randomized block experiment with "experiment" and

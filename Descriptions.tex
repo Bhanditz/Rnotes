@@ -1,0 +1,1215 @@
+\documentclass{article}
+\usepackage{natbib}
+
+\oddsidemargin  0.1in
+\textheight 9.4 in
+\textwidth   6.0 in
+\topmargin   -0.7in
+
+\renewcommand{\floatpagefraction}{0.8}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+
+\newcommand{\strutt}{\vrule height 2.5ex depth 0.5ex width 0ex}%> in tabular
+
+\newcommand{\code}[1]{\texttt{#1}}
+
+\title{\Huge Some Example Datasets}
+
+\author{
+  {\Large Bill Venables}\\[1.8ex]
+  \emph{Department of Statistics}\\
+  \emph{The University of Adelaide}
+  \\[5mm]
+  \copyright\ W. Venables, 1990, 1992.}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent
+These datasets and their descriptions are extracted from 
+\begin{quotation}
+Notes on S: A Programming Environment for Data Analysis and Graphics\\
+by Bill Venables (1990)
+\end{quotation}
+
+\section{The cloud point data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> Draper \& Smith, \textit{Applied Regression Analysis}, p.\ 162\\
+\textbf{Category:} \> Polynomial regression. Simple plots.
+\end{tabbing}
+
+\subsection*{Description}
+The cloud point of a liquid is a measure of the degree of crystalization
+in a stock that can be measured by the refractive index.  It has been
+suggested that the percentage of $I_8$ in the base stock is an excellent
+predictor of cloud point using the second or third order model:
+\[
+Y = \beta_0 + \beta_1x + \beta_2x^2 + \beta_3x^3 + E,\qquad E\sim
+\mathrm{N}(0,\sigma^2)
+\]
+
+\subsection*{Data}
+The following data was collected on stocks with known percentage of $I_8$:
+\begin{center}
+\def\0{\hphantom{0}}
+\begin{tabular}{@{\protect\strutt}|cc|cc|cc|cc|}
+\hline
+$I_8$\% & Cloud Point & $I_8$\% & Cloud Point & $I_8$\% & Cloud Point &
+$I_8$\% & Cloud Point \\
+\hline
+ \00 & 21.9 & \02 & 26.1 & \05 & 28.9 & \08 & 31.4 \\
+ \00 & 22.1 & \03 & 26.8 & \06 & 29.8 & \08 & 31.5\\
+ \00 & 22.8 & \03 & 27.3 & \06 & 30.0 & \09 & 31.8\\
+ \01 & 24.5 & \04 & 28.2 & \06 & 30.3 & 10 & 33.1\\
+ \02 & 26.0 & \04 & 28.5 & \07 & 30.4 & &\\
+\hline
+\end{tabular}
+\end{center}
+
+The data may be read from file \code{cloud.data} in a form suitable to
+construct a data frame.
+
+\subsection*{Suggested analysis}
+Fit polynomial regression models using the \code{lm()} function, and choose
+the degree carefully.
+
+\clearpage\section{The Janka hardness data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> E. J. Williams: \textit{Regression Analysis}, Wiley, 1959.\\
+\textbf{Category:} \> Polynomial regression.  Transformations.
+\end{tabbing}
+
+\subsection*{Description}
+The Janka hardness is an important structural property of Australian
+timbers, which is difficult to measure.  It is, however, related to the
+density of the timber, which is relatively easy to measure.  A low degree
+polynomial regression is suggested as appropriate.
+\[
+Y = \beta_0+\beta_1x+\beta_2x^2+\cdots+E
+\]
+where $Y$ is the hardness and $x$ the density.
+
+\subsection*{Data}
+The following data comes from samples of 36 Australian Eucalypt hardwoods.
+\begin{center}
+\def\0{\hphantom{0}}
+\begin{tabular}{@{\protect\strutt}|cc|cc|cc|cc|cc|cc|}
+\hline
+D & H & D & H & D & H & D & H & D & H & D & H \\
+\hline
+ 24.7 & 484 & 30.3 &\0587 & 39.4 & 1210 & 42.9 & 1270 & 53.4 & 1880 & 59.8 & 1940\\
+ 24.8 & 427 & 32.7 &\0704 & 39.9 &\0989 & 45.8 & 1180 & 56.0 & 1980 & 66.0 & 3260\\
+ 27.3 & 413 & 35.6 &\0979 & 40.3 & 1160 & 46.9 & 1400 & 56.5 & 1820 & 67.4 & 2700\\
+ 28.4 & 517 & 38.5 &\0914 & 40.6 & 1010 & 48.2 & 1760 & 57.3 & 2020 & 68.8 & 2890\\
+ 28.4 & 549 & 38.8 & 1070 & 40.7 & 1100 & 51.5 & 1710 & 57.6 & 1980 & 69.1 & 2740\\
+ 29.0 & 648 & 39.3 & 1020 & 40.7 & 1130 & 51.5 & 2010 & 59.2 & 2310 & 69.1 & 3140\\
+\hline
+\end{tabular}
+\end{center}
+
+The data may be read as a data frame from file \code{janka.data}.
+
+\subsection*{Suggested analysis}
+Fit polynomial regression models, choosing the degree carefully.  Examine
+the residuals and see if the data has any obvious outliers or
+heteroscedasticity.  Check to see what effect a square root or log
+transformation has on the residual pattern when plotted against fitted
+values.
+
+More advanced: Consider a quasi-likelihood model with variance proportional
+to the mean and a square root link.
+
+\clearpage\section{The Tuggeranong house price data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> Dr~Ray Correll, Personal communication\\
+\textbf{Category:} \> Multiple regression, coplots.
+\end{tabbing}
+
+\subsection*{Description}
+Before buying a house in Tuggeranong in February, 1987, a cautious
+potential householder collected some data on houses on the market.  The
+data for 20 such houses is shown in the table and is available as the
+file  \code{house.dat}.  The variables collected are, in order, price,
+total floor area, block area, number of main rooms, age of house and
+whether or not the house was centrally heated.
+
+
+\subsection*{Data}
+The data is given in Table \ref{tugg} and is available as the file
+\texttt{house.data}.
+
+\begin{table}[ht]
+\begin{center}
+\def\0{\hphantom{0}}
+\begin{tabular}{@{\protect\strutt}|*{6}{c|}}
+\hline
+Price (\$000s) & Floor  (m$^2$) & Block  (m$^2$) & Rooms & Age (years) &
+Cent.\ Heat. \\
+\hline
+52.00 &  111.0  & \0830 &   5   &   6.2 &    no \\
+54.75 &  128.0  & \0710 &   5   &   7.5 &    no \\
+57.50 &  101.0  &  1000 &   5   &   4.2 &    no \\
+57.50 &  131.0  & \0690 &   6   &   8.8 &    no \\
+59.75 & \093.0  & \0900 &   5   &   1.9 &   yes \\
+62.50 &  112.0  & \0640 &   6   &   5.2 &    no \\
+64.75 &  137.6  & \0700 &   6   &   6.6 &   yes \\
+67.25 &  148.5  & \0740 &   6   &   2.3 &    no \\
+67.50 &  113.5  & \0660 &   6   &   6.1 &    no \\
+69.75 &  152.0  & \0645 &   7   &   9.2 &    no \\
+70.00 &  121.5  & \0730 &   5   &   4.3 &   yes \\
+75.50 &  141.0  & \0730 &   7   &   4.3 &    no \\
+77.50 &  124.0  & \0670 &   6   &   1.0 &   yes \\
+77.50 &  153.5  & \0795 &   7   &   7.0 &   yes \\
+81.25 &  149.0  & \0900 &   6   &   3.6 &   yes \\
+82.50 &  135.0  & \0810 &   6   &   1.7 &   yes \\
+86.25 &  162.0  & \0930 &   6   &   1.2 &   yes \\
+87.50 &  145.0  & \0825 &   6   &   0.0 &   yes \\
+88.00 &  172.0  & \0950 &   7   &   2.3 &   yes \\
+92.00 &  170.5  & \0870 &   7   &   0.7 &   yes \\
+\hline
+\end{tabular}
+\end{center}
+
+\caption{\label{tugg}The Tuggeranong house price data}
+\end{table}
+
+\subsection*{Suggested analysis}
+Explore the data with \code{coplot()} using \code{Age} and \code{CentHeat} as
+conditioning variables.
+
+Choose a multiple regression model carefully and check for outliers, (that
+is, for ``bargains'' and ``rip-offs'').
+
+
+\clearpage\section{Yorke Penninsula wheat yield data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> K. W. Morris (private communication)\\
+\textbf{Category:} \> Multiple regression.
+\end{tabbing}
+
+\subsection*{Description}
+The annual yield of wheat in a marginal wheat growing district on the Yorke
+Penninsula, South Australia, together with the rainfall for the three
+growing months, for the years 1931--1955.  The year itself is potentially a
+surrogate predictor to allow for improvements in varieties and farm
+practice.  Yield is in bushels per acre, and rainfall is in inches.
+
+\subsection*{Data}
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{@{\protect\strutt}|crrrr|crrrr|}
+\hline
+Year & Rain0 & Rain1 & Rain2 & Yield & Year & Rain0 & Rain1 & Rain2 & Yield\\
+\hline
+  1931 &  .05 &  1.61 & 3.52 &   .31 & 1944 & 3.30 &  4.19 & 2.11 &  4.60\\
+  1932 & 1.15 &   .60 & 3.46 &   .00 & 1945 &  .44 &  3.41 & 1.55 &   .35\\
+  1933 & 2.22 &  4.94 & 3.06 &  5.47 & 1946 &  .50 &  3.26 & 1.20 &   .00\\
+  1934 & 1.19 & 11.26 & 4.91 & 16.73 & 1947 &  .18 &  1.52 & 1.80 &   .00\\
+  1935 & 1.40 & 10.95 & 4.23 & 10.54 & 1948 &  .80 &  3.25 & 3.55 &  2.98\\
+  1936 & 2.96 &  4.96 &  .11 &  5.89 & 1949 & 7.08 &  5.93 &  .93 & 11.89\\
+  1937 & 2.68 &   .67 & 2.17 &   .03 & 1950 & 2.54 &  4.71 & 2.51 &  6.56\\
+  1938 & 3.66 &  8.49 & 11.95 & 16.03 & 1951 & 1.08 &  3.37 & 4.02 &  1.30\\
+  1939 & 5.15 &  3.60 & 2.18 &  6.57 & 1952 &  .22 &  3.24 & 4.93 &   .03\\
+  1940 & 6.44 &  2.69 & 1.37 &  8.43 & 1953 &  .55 &  1.78 & 1.97 &   .00\\
+  1941 & 2.01 &  6.88 &  .92 &  8.68 & 1954 & 1.65 &  3.22 & 1.65 &  3.09\\
+  1942 &  .73 &  3.30 & 3.97 &  2.49 & 1955 &  .72 &  3.42 & 3.31 &  2.72\\
+  1943 & 2.52 &  1.93 & 1.16 &   .98 &      &      &       &       &\\
+\hline
+\end{tabular}
+\end{center}
+
+\caption{\label{sawheat} Yorke Penninsula wheat yield data}
+\end{table}
+The data is given in Table~\ref{sawheat} and may be read as a data frame from
+file \code{sawheat.data}.
+
+\subsection*{Suggested analysis}
+Fit a multiple regression model and check the results, via residual plots
+especially.
+
+
+\clearpage\section{The Iowa wheat yield data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> CAED Report, 1964.  Quoted in Draper \& Smith.\\
+\textbf{Category:} \>  Multiple regression; diagnostics.
+\end{tabbing}
+
+\subsection*{Description}
+The data gives the pre-season and three growing months' precipitation, the
+mean temperatures for the three growing months and harvest month, the year,
+and the yield of wheat for the USA state of Iowa, for the years 1930--1962.
+
+\subsection*{Data}
+
+\begin{table}[ht]
+\begin{center}
+\small
+\begin{tabular}{@{\protect\strutt}|ccccccccc|c|}
+\hline
+ Year & Rain0 & Temp1 & Rain1 &Temp2 & Rain2 &Temp3 & Rain3 &Temp4 &
+ Yield\\
+\hline
+ 1930 & 17.75 &  60.2 &  5.83 & 69.0 &  1.49 & 77.9 &  2.42 & 74.4 &  34.0\\
+ 1931 & 14.76 &  57.5 &  3.83 & 75.0 &  2.72 & 77.2 &  3.30 & 72.6 &  32.9\\
+ 1932 & 27.99 &  62.3 &  5.17 & 72.0 &  3.12 & 75.8 &  7.10 & 72.2 &  43.0\\
+ 1933 & 16.76 &  60.5 &  1.64 & 77.8 &  3.45 & 76.4 &  3.01 & 70.5 &  40.0\\
+ 1934 & 11.36 &  69.5 &  3.49 & 77.2 &  3.85 & 79.7 &  2.84 & 73.4 &  23.0\\
+ 1935 & 22.71 &  55.0 &  7.00 & 65.9 &  3.35 & 79.4 &  2.42 & 73.6 &  38.4\\
+ 1936 & 17.91 &  66.2 &  2.85 & 70.1 &  0.51 & 83.4 &  3.48 & 79.2 &  20.0\\
+ 1937 & 23.31 &  61.8 &  3.80 & 69.0 &  2.63 & 75.9 &  3.99 & 77.8 &  44.6\\
+ 1938 & 18.53 &  59.5 &  4.67 & 69.2 &  4.24 & 76.5 &  3.82 & 75.7 &  46.3\\
+ 1939 & 18.56 &  66.4 &  5.32 & 71.4 &  3.15 & 76.2 &  4.72 & 70.7 &  52.2\\
+ 1940 & 12.45 &  58.4 &  3.56 & 71.3 &  4.57 & 76.7 &  6.44 & 70.7 &  52.3\\
+ 1941 & 16.05 &  66.0 &  6.20 & 70.0 &  2.24 & 75.1 &  1.94 & 75.1 &  51.0\\
+ 1942 & 27.10 &  59.3 &  5.93 & 69.7 &  4.89 & 74.3 &  3.17 & 72.2 &  59.9\\
+ 1943 & 19.05 &  57.5 &  6.16 & 71.6 &  4.56 & 75.4 &  5.07 & 74.0 &  54.7\\
+ 1944 & 20.79 &  64.6 &  5.88 & 71.7 &  3.73 & 72.6 &  5.88 & 71.8 &  52.0\\
+ 1945 & 21.88 &  55.1 &  4.70 & 64.1 &  2.96 & 72.1 &  3.43 & 72.5 &  43.5\\
+ 1946 & 20.02 &  56.5 &  6.41 & 69.8 &  2.45 & 73.8 &  3.56 & 68.9 &  56.7\\
+ 1947 & 23.17 &  55.6 & 10.39 & 66.3 &  1.72 & 72.8 &  1.49 & 80.6 &  30.5\\
+ 1948 & 19.15 &  59.2 &  3.42 & 68.6 &  4.14 & 75.0 &  2.54 & 73.9 &  60.5\\
+ 1949 & 18.28 &  63.5 &  5.51 & 72.4 &  3.47 & 76.2 &  2.34 & 73.0 &  46.1\\
+ 1950 & 18.45 &  59.8 &  5.70 & 68.4 &  4.65 & 69.7 &  2.39 & 67.7 &  48.2\\
+ 1951 & 22.00 &  62.2 &  6.11 & 65.2 &  4.45 & 72.1 &  6.21 & 70.5 &  43.1\\
+ 1952 & 19.05 &  59.6 &  5.40 & 74.2 &  3.84 & 74.7 &  4.78 & 70.0 &  62.2\\
+ 1953 & 15.67 &  60.0 &  5.31 & 73.2 &  3.28 & 74.6 &  2.33 & 73.2 &  52.9\\
+ 1954 & 15.92 &  55.6 &  6.36 & 72.9 &  1.79 & 77.4 &  7.10 & 72.1 &  53.9\\
+ 1955 & 16.75 &  63.6 &  3.07 & 67.2 &  3.29 & 79.8 &  1.79 & 77.2 &  48.4\\
+ 1956 & 12.34 &  62.4 &  2.56 & 74.7 &  4.51 & 72.7 &  4.42 & 73.0 &  52.8\\
+ 1957 & 15.82 &  59.0 &  4.84 & 68.9 &  3.54 & 77.9 &  3.76 & 72.9 &  62.1\\
+ 1958 & 15.24 &  62.5 &  3.80 & 66.4 &  7.55 & 70.5 &  2.55 & 73.0 &  66.0\\
+ 1959 & 21.72 &  62.8 &  4.11 & 71.5 &  2.29 & 72.3 &  4.92 & 76.3 &  64.2\\
+ 1960 & 25.08 &  59.7 &  4.43 & 67.4 &  2.76 & 72.6 &  5.36 & 73.2 &  63.2\\
+ 1961 & 17.79 &  57.4 &  3.36 & 69.4 &  5.51 & 72.6 &  3.04 & 72.4 &  75.4\\
+ 1962 & 26.61 &  66.6 &  3.12 & 69.1 &  6.27 & 71.6 &  4.31 & 72.5 &  76.0\\
+\hline
+\end{tabular}
+\end{center}
+\caption{\label{iowheat} The Iowa historical wheat yield data}
+\end{table}
+The data is given in Table~\ref{iowheat} and may be read as a data frame from
+file \code{iowheat.data}.
+
+\subsection*{Suggested analysis}
+Fit a multiple regression model and select carefully the predictors.  Work
+either by backward elimination of forward selection.  Examine the residuals
+by plotting them in turn against each predictor variable.
+
+Consider the effect of adding quadratic terms in the predictors.
+
+It is interesting to compare this set of data with the Yorke Penninsula
+data for a similar period.
+
+
+\clearpage\section{The gasoline yield data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> \textit{Estimate gasoline yields from crudes}\\
+\> by Nilon H.~Prater, \textsf{Petroleum Refiner}, \textbf{35}, \#5.\\
+\textbf{Category:} \> Analysis of variance, covariance, and multiple regression.\\
+\>  Modern regression.
+\end{tabbing}
+
+\subsection*{Description}
+The data gives the gasoline yield as a percent of crude oil, say $y$, and
+four independent variables which may influence yield.  These are
+\begin{description}
+
+\item[$x_1$:] The crude oil gravity, in $^0$\textsf{API},
+
+\item[$x_2$:] The crude oil vapour pressure,
+
+\item[$x_3$:] The crude oil 10\% point, \textsf{ASTM},
+
+\item[$x_4$:] The gasoline end point.
+
+\end{description}
+
+The data comes as 10 separate samples, and within each sample the values
+for $x_1$, $x_2$, and $x_3$ are constant.
+
+\subsection*{Data}
+The data is shown in Table~\ref{oildata}, and is available as the file
+\code{oil.data} in a form suitable for constructing a data frame.
+
+\begin{table}[ht]
+\begin{center}
+\def\0{\hphantom{0}}
+\begin{tabular}{@{\protect\strutt}|crrrrr|crrrrr|}
+\hline
+Sample& $x_1$&$x_2$&$x_3$&$x_4$&$y$ &Sample& $x_1$&$x_2$&$x_3$&$x_4$&$y$\\
+\hline
+ \01& 31.8& 0.2& 316& 365&  8.5 &\06& 40.0& 6.1& 217& 212&  7.4\\
+ \01& 31.8& 0.2& 316& 379& 14.7 &\06& 40.0& 6.1& 217& 272& 18.2\\
+ \01& 31.8& 0.2& 316& 428& 18.0 &\06& 40.0& 6.1& 217& 340& 30.4\\
+%   &     &    &    &    &      &   &     &    &    &    &     \\
+ \02& 32.2& 2.4& 284& 351& 14.0 &\07& 40.3& 4.8& 231& 307& 14.4\\
+ \02& 32.2& 2.4& 284& 424& 23.2 &\07& 40.3& 4.8& 231& 367& 26.8\\
+    &     &    &    &    &      &\07& 40.3& 4.8& 231& 395& 34.9\\
+%   &     &    &    &    &      &   &     &    &    &    &     \\
+ \03& 32.2& 5.2& 236& 267& 10.0 &\08& 40.8& 3.5& 210& 218&  8.0\\
+ \03& 32.2& 5.2& 236& 360& 24.8 &\08& 40.8& 3.5& 210& 273& 13.1\\
+ \03& 32.2& 5.2& 236& 402& 31.7 &\08& 40.8& 3.5& 210& 347& 26.6\\
+%   &     &    &    &    &      &   &     &    &    &    &     \\
+ \04& 38.1& 1.2& 274& 285&  5.0 &\09& 41.3& 1.8& 267& 235&  2.8\\
+ \04& 38.1& 1.2& 274& 365& 17.6 &\09& 41.3& 1.8& 267& 275&  6.4\\
+ \04& 38.1& 1.2& 274& 444& 32.1 &\09& 41.3& 1.8& 267& 358& 16.1\\
+    &     &    &    &    &      &\09& 41.3& 1.8& 267& 416& 27.8\\
+ \05& 38.4& 6.1& 220& 235&  6.9 & 10& 50.8& 8.6& 190& 205& 12.2\\
+ \05& 38.4& 6.1& 220& 300& 15.2 & 10& 50.8& 8.6& 190& 275& 22.3\\
+ \05& 38.4& 6.1& 220& 365& 26.0 & 10& 50.8& 8.6& 190& 345& 34.7\\
+ \05& 38.4& 6.1& 220& 410& 33.6 & 10& 50.8& 8.6& 190& 407& 45.7\\
+\hline
+\end{tabular}
+\end{center}
+
+\caption{\label{oildata}The gasoline recovery data}
+\end{table}
+
+\subsection*{Suggested analysis}
+Using \code{EndPt} as a covariate, check to see if differences between
+samples can be accounted for by regression models on the other predictors.
+
+
+More advanced:  Fit a two stratum ANOVA model using between and within
+samples as the two strata.
+
+
+\clearpage\section{The Michaelson and Morley speed of light data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> Weekes: A Genstat Primer.\\
+\textbf{Category:} \> Analysis of Variance.
+\end{tabbing}
+
+\subsection*{Description}
+The classical data of Michaelson and Morley on the speed of light.  The
+data consists of five experiments, each consisting of 20 consecutive
+``runs''.  The response is the speed of light measurement, suitably coded.
+The data is here viewed as a randomized block experiment with
+\textit{experiment} and \textit{run} as the factors.  \textit{run} may also be
+considered a quantitative variate to account for linear (or polynomial)
+changes in the measurement over the course of a single experiment.
+
+\subsection*{Data}
+The data is given in Table~\ref{morley} and may be read as a data frame
+from file \code{morley.data} in a form suitable for constructing a data frame.
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{|rrrrr|c@{\protect\strutt}|rrrrr|}
+ \cline{1-5} \cline{7-11}
+\multicolumn{5}{|c|}{Runs 1--10}&\hspace*{1cm}&\multicolumn{5}{c|}{Runs
+11--20}\\
+      ${\cal E}_1$ &    ${\cal E}_2$ &    ${\cal E}_3$ &    ${\cal E}_4$ &
+      ${\cal E}_5$ &&    ${\cal E}_1$ &    ${\cal E}_2$ &    ${\cal E}_3$ &
+      ${\cal E}_4$ &    ${\cal E}_5$\\
+ \cline{1-5} \cline{7-11}
+    850 &  960 &  880 &  890 &  890 && 1000 &  830 &  880 &  910 &  870\\
+    740 &  940 &  880 &  810 &  840 && 980 &  790 &  910 &  920 &  870\\
+    900 &  960 &  880 &  810 &  780 && 930 &  810 &  850 &  890 &  810\\
+   1070 &  940 &  860 &  820 &  810 && 650 &  880 &  870 &  860 &  740\\
+    930 &  880 &  720 &  800 &  760 && 760 &  880 &  840 &  880 &  810\\
+    850 &  800 &  720 &  770 &  810 && 810 &  830 &  840 &  720 &  940\\
+    950 &  850 &  620 &  760 &  790 &&1000 &  800 &  850 &  840 &  950\\
+    980 &  880 &  860 &  740 &  810 &&1000 &  790 &  840 &  850 &  800\\
+    980 &  900 &  970 &  750 &  820 && 960 &  760 &  840 &  850 &  810\\
+    880 &  840 &  950 &  760 &  850 && 960 &  800 &  840 &  780 &  870\\
+ \cline{1-5} \cline{7-11}
+\end{tabular}
+\end{center}
+
+\caption{\label{morley}The Michaelson and Morley speed of light data}
+\end{table}
+
+\subsection*{Suggested analysis}
+Using an single classification ANOVA model check for differences between
+experiments and summarise your conclusions.
+
+\clearpage\section{The rat genotype data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> Quoted in Scheffe, H.: \textit{The Analysis of Variance}\\
+\textbf{Category:} \> Unbalanced double classification.
+\end{tabbing}
+
+
+\subsection*{Description}
+Data from a foster feeding experiment with rat mothers and litters of four
+different genotypes: $A$, $F$, $I$ and $J$.  The measurement is the litter
+weight gain after a trial feeding period.
+
+\subsection*{Data}
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{@{\protect\strutt}|c|cccc|}
+\hline
+Litter's&\multicolumn{4}{c|}{Mother's Genotype}\\
+Genotype &   $A$     &       $F$    &        $I$     &       $J$   \\
+\hline
+$A$     & 61.5    &     55.0   &      52.5    &     42.0  \\
+        & 68.2    &     42.0   &      61.8    &     54.0  \\
+        & 64.0    &     60.2   &      49.5    &     61.0  \\
+        & 65.0    &            &      52.7    &     48.2  \\
+        & 59.7    &            &              &     39.6  \\
+\hline
+$F$     & 60.3    &     50.8   &      56.5    &     51.3  \\
+        & 51.7    &     64.7   &      59.0    &     40.5  \\
+        & 49.3    &     61.7   &      47.2    &           \\
+        & 48.0    &     64.0   &      53.0    &           \\
+        &         &     62.0   &              &           \\
+\hline
+$I$     & 37.0    &     56.3   &      39.7    &     50.0  \\
+        & 36.3    &     69.8   &      46.0    &     43.8  \\
+        & 68.0    &     67.0   &      61.3    &     54.5  \\
+        &         &            &              &     55.3  \\
+        &         &            &              &     55.7  \\
+\hline
+$J$     & 59.0    &     59.5   &      45.2    &     44.8  \\
+        & 57.4    &     52.8   &      57.0    &     51.5  \\
+        & 54.0    &     56.0   &      61.4    &     53.0  \\
+        & 47.0    &            &              &     42.0  \\
+        &         &            &              &     54.0  \\
+\hline
+\end{tabular}
+\end{center}
+\caption{\label{genotype} The rat genotype data}
+\end{table}
+The data is given in Table~\ref{genotype} and may be read as a data frame from
+file \code{genotype.data}.
+
+\subsection*{Suggested analysis}
+Fit a double classificaiton model.  Check for interaction using both a
+formal analysis and graphically using \code{interaction.plot()}.  Test the
+main effects and summarise.
+
+\clearpage\section{Fisher's sugar beet data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> R. A. Fisher, \textsl{Design of Experiments}.\\
+\textbf{Category:} \> Analysis of variance and covariance.
+\end{tabbing}
+
+\subsection*{Description}
+A classical $3\times2^3$ randomized block experiment in four blocks of size
+24.  The response is the total weight of sugarbeet roots off the plot, but
+this is accompanied by the number of roots measured.  The suggestion is
+that number of roots should be a covariate to allow for varying plot size.
+
+The factors are \textsl{Variety}. (3 levels, $a$, $b$ and $c$), and N, P and K
+each at 2 levels, present or absent.
+
+\subsection*{Data}
+The data is given in Table~\ref{sugar} and may be read from the file
+\texttt{sugar.data} in a form suitable to construct a data frame.
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{@{\protect\strutt}|cccc|*{4}{rr|}}
+\hline
+&&&&\multicolumn{2}{c|}{Block 1}&\multicolumn{2}{c|}{Block
+2}&\multicolumn{2}{c|}{Block 3}&\multicolumn{2}{c|}{Block 4}\\
+  V  &   N  &   P  &   K  &   No &  Wt  &   No &  Wt  &    No &  Wt  &   No
+  &  Wt\\
+\hline
+ $a$ &  $-$ &  $-$ &  $-$ &  124 & 162  &  133 & 162  &   114 & 127  &  127 & 158\\
+ $a$ &  $-$ &  $-$ &  $k$ &  131 & 152  &  161 & 164  &   130 & 141  &  145 & 188\\
+ $a$ &  $-$ &  $p$ &  $-$ &  115 & 173  &  134 & 175  &   134 & 142  &  109 & 162\\
+ $a$ &  $-$ &  $p$ &  $k$ &  126 & 140  &  133 & 158  &   106 & 148  &  132 & 160\\
+ $a$ &  $n$ &  $-$ &  $-$ &  136 & 184  &  134 & 178  &   127 & 168  &  139 & 199\\
+ $a$ &  $n$ &  $-$ &  $k$ &  134 & 112  &  156 & 193  &   101 & 171  &  138 & 191\\
+ $a$ &  $n$ &  $p$ &  $-$ &  132 & 190  &  104 & 166  &   119 & 157  &  132 & 193\\
+ $a$ &  $n$ &  $p$ &  $k$ &  120 & 175  &  147 & 155  &   107 & 139  &  148 & 192\\
+ $b$ &  $-$ &  $-$ &  $-$ &  145 & 133  &  147 & 130  &   139 & 138  &  127 & 128\\
+ $b$ &  $-$ &  $-$ &  $k$ &  156 & 117  &  152 & 137  &   107 & 121  &  147 & 147\\
+ $b$ &  $-$ &  $p$ &  $-$ &  152 & 140  &  138 & 101  &   125 & 124  &  120 & 143\\
+ $b$ &  $-$ &  $p$ &  $k$ &  137 & 127  &  145 & 132  &   125 & 132  &  143 & 139\\
+ $b$ &  $n$ &  $-$ &  $-$ &  124 & 163  &  138 & 159  &   140 & 166  &  159 & 174\\
+ $b$ &  $n$ &  $-$ &  $k$ &  136 & 143  &  142 & 144  &   133 & 142  &  148 & 159\\
+ $b$ &  $n$ &  $p$ &  $-$ &  140 & 168  &  142 & 150  &   133 & 118  &  138 & 157\\
+ $b$ &  $n$ &  $p$ &  $k$ &  146 & 144  &  135 & 160  &   138 & 155  &  140 & 153\\
+ $c$ &  $-$ &  $-$ &  $-$ &  113 & 122  &  138 & 132  &   119 & 123  &  127 & 146\\
+ $c$ &  $-$ &  $-$ &  $k$ &   91 & 107  &  149 & 171  &   118 & 142  &  129 & 151\\
+ $c$ &  $-$ &  $p$ &  $-$ &  123 & 118  &  139 & 142  &   127 & 120  &  124 & 138\\
+ $c$ &  $-$ &  $p$ &  $k$ &  129 & 140  &  126 & 115  &   129 & 130  &  142 & 152\\
+ $c$ &  $n$ &  $-$ &  $-$ &  121 & 118  &  141 & 152  &   127 & 149  &  127 & 165\\
+ $c$ &  $n$ &  $-$ &  $k$ &  126 & 148  &  128 & 152  &   107 & 147  &  110 & 136\\
+ $c$ &  $n$ &  $p$ &  $-$ &  103 & 112  &  144 & 175  &   102 & 152  &  143 & 173\\
+ $c$ &  $n$ &  $p$ &  $k$ &  120 & 162  &  125 & 160  &   129 & 173  &  137 & 185\\
+\hline
+\end{tabular}
+\end{center}
+\caption{\label{sugar}Fisher's sugar beet data}
+\end{table}
+
+\subsection*{Suggested analysis}
+Analyse the data as a randomised block experiment with \code{Wt} as the
+response and \code{No} as a covariate.  Prune the model of all unnecessary
+interaction terms and summarise.
+
+
+\clearpage\section{A barley split plot field trial}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> Unknown.  Traditional data.\\
+\textbf{Category:} \> Multistratum analysis of variance.
+\end{tabbing}
+
+\subsection*{Description}
+An experiment involving barley varieties and manure (nitrogen) was conducted in 6
+blocks of 3 whole plots.
+
+Each whole plot was divided into 4 subplots.  Three varieties of barley were
+used in the experiment with one variety being sown in each whole plot,
+while the four levels of manure (0, 0.01, 0.02, and 0.04 tons per acre)
+were used, one level in each of the four subplots of each whole plot.  In
+the above table $V_i$ denotes the $i$th variety and $N_j$ denotes the $j$th
+level of nitrogen.
+
+\subsection*{Data}
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{@{\protect\strutt}|c|c|rrrr||c|c|rrrr|}
+\hline
+Block & Variety & $N_1$ & $N_2$ & $N_3$ & $N_4$ &
+Block & Variety & $N_1$ & $N_2$ & $N_3$ & $N_4$ \\
+\hline
+       & $V_1$ &   111  &  130  &  157  &  174  &
+       & $V_1$ &    74  &   89  &   81  &  122  \\
+  I    & $V_2$ &   117  &  114  &  161  &  141  &
+ IV    & $V_2$ &    64  &  103  &  132  &  133  \\
+       & $V_3$ &   105  &  140  &  118  &  156  &
+       & $V_3$ &    70  &   89  &  104  &  117  \\
+\hline
+       & $V_1$ &    61  &   91  &   97  &  100  &
+       & $V_1$ &    62  &   90  &  100  &  116  \\
+ II    & $V_2$ &    70  &  108  &  126  &  149  &
+  V    & $V_2$ &    80  &   82  &   94  &  126  \\
+       & $V_3$ &    96  &  124  &  121  &  144  &
+       & $V_3$ &    63  &   70  &  109  &   99  \\
+\hline
+       & $V_1$ &    68  &   64  &  112  &   86  &
+       & $V_1$ &    53  &   74  &  118  &  113  \\
+III    & $V_2$ &    60  &  102  &   89  &   96  &
+ VI    & $V_2$ &    89  &   82  &   86  &  104  \\
+       & $V_3$ &    89  &  129  &  132  &  124  &
+       & $V_3$ &    97  &   99  &  119  &  121  \\
+\hline
+\end{tabular}
+\caption{\label{barley} A split plot barley field trial}
+\end{center}
+\end{table}
+The data is given in Table~\ref{barley} and may be read as a data frame from
+file \code{barley.data}.
+
+\subsection*{Suggested analysis}
+Analyse as a split plot field experiment and summarise.
+
+
+\clearpage\section{The snail mortality data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> Zoology Department, The University of Adelaide.\\
+\textbf{Category:} \> Generalized Linear Modelling.
+\end{tabbing}
+
+\subsection*{Description}
+Groups of 20 snails were held for periods of 1, 2, 3 or 4 weeks (exposure)
+in carefully controlled conditions of temperature (3 levels) and relative
+humidity (4 levels).  There were two species of snail, A and B, and the
+experiment was designed as a $4\times3\times4\times2$ completely randomized
+design.  At the end of the exposure time the snails were tested to see if
+they had survived; this process itself is fatal for the animals.  The
+object of the exercise was to model the probability of survival in terms of
+the stimulus variables, and in particular to test for differences between
+species.
+
+The data is unusual in that in most cases fatalities during the experiment
+were fairly small.
+
+\subsection*{Data}
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{@{\protect\strutt}|c|c||*{4}{rrr|}}
+\hline
+\multicolumn{2}{|c||}{}&\multicolumn{12}{c|}{Relative Humidity}\\
+\multicolumn{2}{|c||}{}&\multicolumn{3}{c}{60.0\%}&\multicolumn{3}{c}{65.8\%}&%
+  \multicolumn{3}{c}{70.5\%}&\multicolumn{3}{c|}{75.8\%}\\
+\hline
+\multicolumn{2}{|c||}{}&\multicolumn{3}{c|}{Temperature}&%
+\multicolumn{3}{|c|}{Temperature}&\multicolumn{3}{c|}{Temperature}&%
+\multicolumn{3}{c|}{Temperature}\\
+\multicolumn{1}{|c}{Species}& Exposure &
+             10 & 15 & 20 & 10 & 15 & 20 & 10 & 15 & 20 & 10 & 15 & 20\\
+\hline
+A   &  1 &    0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0\\
+    &  2 &    0 &  1 &  1 &  0 &  1 &  0 &  0 &  0 &  0 &  0 &  0 &  0\\
+    &  3 &    1 &  4 &  5 &  0 &  2 &  4 &  0 &  2 &  3 &  0 &  1 &  2\\
+    &  4 &    7 &  7 &  7 &  4 &  4 &  7 &  3 &  3 &  5 &  2 &  3 &  3\\
+\hline
+\hline
+B   &  1 &    0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0\\
+    &  2 &    0 &  3 &  2 &  0 &  2 &  1 &  0 &  0 &  1 &  1 &  0 &  1\\
+    &  3 &    7 & 11 & 11 &  4 &  5 &  9 &  2 &  4 &  6 &  2 &  3 &  5\\
+    &  4 &   12 & 14 & 16 & 10 & 12 & 12 &  5 &  7 &  9 &  4 &  5 &  7\\
+\hline
+\end{tabular}
+\end{center}
+
+\caption{\label{snails} The snail mortality data}
+\end{table}
+The data is given in Table~\ref{snails} and may be read as a data frame from
+file \code{snails.data}.
+
+\subsection*{Suggested analysis}
+The data is intersting in that although it has many extremely small cell
+counts there is every indication that some of the likelihood ratio large
+sample theory is quite safe.
+
+Fit Binomial models to the data with either a logit or a probit link.  Show
+that a model with parallel regressions on \code{Temp}, \code{Humid},
+\texttt{Exposure} and \code{Exposure}$^2$ for each species (in the logit/probit
+scale) is reasonable, and summarise.
+
+\clearpage\section{The Kalythos blindness data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> S. D. Silvey: \textsl{Statistical Inference}.  (Fictitious?)\\
+\textbf{Category:} \> Generalized linear modelling
+\end{tabbing}
+
+\subsection*{Description}
+On the Greek island of Kalythos the male inhabitants suffer from a
+congenital eye disease, the effects of which become more marked with
+increasing age.  Samples of islander males of various ages  were tested for
+blindness and the results recorded.
+
+\subsection*{Data}
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{@{\protect\strutt}|l|rrrrr|}
+\hline
+Age:        &  20 &  35 &  45 &  55 &  70 \\
+\hline
+No. tested: &  50 &  50 &  50 &  50 &  50 \\
+\hline
+No. blind:  &   6 &  17 &  26 &  37 &  44 \\
+\hline
+\end{tabular}
+\end{center}
+
+\caption{\label{kalythos}The Kalythos blindness data}
+\end{table}
+The data is given in Table~\ref{kalythos} and may be read as a data frame from
+file \code{kalythos.data}.
+
+\subsection*{Suggested analysis}
+Using an logit or probit model estimate the LD50, that is, the age at which
+the probability of blindness is $p=\frac{1}{2}$, together the standard
+error.  Check how different the logit and probit models are in this respect.
+
+\clearpage\section{The Stormer viscometer calibration data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> E. J. Williams: \textsl{Regression Analysis}, Wiley, 1959\\
+\textbf{Category:} \> Nonlinear regression, special regression.
+\end{tabbing}
+
+\subsection*{Description}
+The stormer viscometer measures the viscosity of a fluid by measuring the
+time taken for an inner cylinder in the mechanism to perform a fixed number
+of revolutions in response to an actuating weight.  The viscometer is
+calibrated by measuring the time taken with varying weights while the
+mechanism is suspended in fluids of accurately known viscosity.  The data
+comes from such a calibration, and theoretical considerations suggest a
+nonlinear relationship between time, weight and viscosity of the form
+\[
+T_i = \frac{\beta v_i}{w_i - \theta} + E_i
+\]
+where $\beta$ and $\theta$ are unknown parameters to be estimated.
+
+
+\subsection*{Data}
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{@{\protect\strutt}|r||r|r|r|}
+\hline
+&\multicolumn{3}{c|}{Weight}\\
+Viscosity &   20   &    50   &   100\\
+\hline
+\hline
+   14.7   &  35.6  &   17.6  &      \\
+\hline
+   27.5   &  54.3  &   24.3  &      \\
+\hline
+   42.0   &  75.6  &   31.4  &      \\
+\hline
+   75.7   & 121.2  &   47.2  &  24.6\\
+\hline
+   89.7   & 150.8  &   58.3  &  30.0\\
+\hline
+  146.6   & 229.0  &   85.6  &  41.7\\
+\hline
+  158.3   & 270.0  &  101.1  &  50.3\\
+\hline
+  161.1   &        &   92.2  &  45.1\\
+\hline
+  298.3   &        &  187.2  &  89.0\\
+          &        &         &  86.5\\
+\hline
+\end{tabular}
+\end{center}
+
+\caption{\label{stormer}The Stormer viscometer calibration data}
+\end{table}
+The data is given in Table~\ref{stormer} and may be read as a data frame from
+file \code{stormer.data}.
+
+\subsection*{Suggested analysis}
+Estimate the nonlinear regression model using the \code{nlr()} software.  A
+suitable initial value may be obtained by writing the regression model in
+the form
+\[
+w_iT_i = \beta v_i + \theta T_i + (w_i - \theta)E_i
+\]
+and regressing $w_iT_i$ on $v_i$ and $T_i$ using ordinary linear
+regression.
+
+\clearpage\section{The chlorine availability data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> Draper \& Smith, \textit{Applied Regression Analysis}, (adapted).\\
+\textbf{Category:} \> Nonlinear regression
+\end{tabbing}
+
+\subsection*{Description}
+
+The following set of industrial chemical data shows the amount of chlorine
+available in a certain product at various times of testing after manufacture.
+A nonlinear regression model for the chlorine decay of the form
+\[
+        Y = \beta_0 + \beta_1\exp(-\theta x)
+\]
+has been suggested on theoretical grounds, with $Y$ the amount remaining at
+time $x$.
+
+\subsection*{Data}
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{@{\protect\strutt}|c|l||c|l||c|l|}
+\hline
+   Weeks  &  Percent available &   Weeks  &  Percent available &   Weeks  &
+   Percent available \\
+\hline
+      8   &  49, 49&              20   &  42, 43, 42&      32   &  40, 41\\
+     10   &  47, 47, 48, 48&      22   &  40, 41, 41&      34   &  40\\
+     12   &  43, 45, 46, 46&      24   &  40, 40, 42&      36   &  38, 41\\
+     14   &  43, 43, 45&          26   &  40, 41, 41&      38   &  40, 40\\
+     16   &  43, 43, 44&          28   &  40, 41&          40   &  39\\
+     18   &  45, 46&              30   &  38, 40, 40&      42   &  39\\
+\hline
+\end{tabular}
+\end{center}
+
+\caption{\label{chlorine} The chlorine availability data.}
+\end{table}
+The data is given in Table~\ref{chlorine} and may be read as a data frame from
+file \code{chlorine.data}.
+
+\subsection*{Suggested analysis}
+Fit the nonlinear regression model using the \code{nlr()} function.  A
+simple way to find an initial value is to guess a value for $\theta$, say
+$\theta=1$ and plot $Y$ against $\exp(-\theta x)$.  Now repeatedly either
+double or halve $\theta$ until the plot is near to linear.  (This can be
+done very simply with the inbuilt line editor.)  Once an initial value for
+$\theta$ is available, initial values for the others can be got by linear
+regression.
+
+Check the fitted model for suspicious data points.
+
+\clearpage\section{The saturated steam pressure data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> Quoted in Draper \& Smith: \textit{Applied Regression Analysis\ldots}\\
+\textbf{Category:} \> Nonlinear regression.
+\end{tabbing}
+
+\subsection*{Description}
+The data gives the temperature ($^0$C) and pressure (Pascals) in a
+saturated steam driven experimental device.  The relationship between
+pressure, $Y$, and temperature, $x$, in saturated steam can be written as
+\[
+Y = \alpha \exp\left\{\beta x \over \gamma + x\right\} + E
+\]
+However a more realistic model may have the experimental errors
+multiplicative rather than additive, in which case an analysis in the log
+scale using the model
+\[
+\log Y = \log\alpha + \left\{\beta x \over \gamma + x\right\} + E
+\]
+may be more appropriate.
+
+\subsection*{Data}
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{@{\protect\strutt}|*{3}{rr|}}
+\hline
+  Temp  &   Press  &    Temp  &   Press  &  Temp  &   Press\\
+\hline
+     0  &    4.14  &      50  &   98.76  &    90  &  522.78\\
+    10  &    8.52  &      60  &  151.13  &    95  &  674.32\\
+    20  &   16.31  &      70  &  224.74  &   100  &  782.04\\
+    30  &   32.18  &      80  &  341.35  &   105  &  920.01\\
+    40  &   64.62  &      85  &  423.36  &        &\\
+\hline
+\end{tabular}
+\end{center}
+\caption{\label{steam} Temperature and pressure in saturated steam}
+\end{table}
+The data is given in Table~\ref{steam} and may be read as a data frame from
+file \code{steam.data}.
+
+
+\subsection*{Suggested analysis}
+Fit both models and compare.  Initial values may be got by a similar method
+to that employed for the Chlorine data, since again there is only one
+nonlinear parameter.
+
+\clearpage\section{Count Rumford's friction data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> Bates \& Watts: \textit{Nonlinear Regression Analysis\ldots}\\
+\textbf{Category:} \> Nonlinear regression
+\end{tabbing}
+
+\subsection*{Description}
+Data on the amount of heat generated by friction was obtained by Lord
+Rumford in 1798.  A bore was fitted into a stationary cylinder and pressed
+against the bottom by a screw.  The bore was turned by a team of horses
+for 30 minutes, after which Lord Rumford ``suffered the thermometer to
+remain in its place nearly three quarters of an hour, observing and noting
+down, at small intervals of time, the temperature indicated by it''.
+
+Newton's law of cooling suggests a nonlinear regression model of
+the form
+\[
+Y = \beta_0 + \beta_1\exp(-\theta x)
+\]
+where $Y$ is the temperature and $x$ is the time in minutes.
+
+\subsection*{Data}
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{@{\protect\strutt}|*{2}{rr|}}
+\hline
+ Time  & Temp    &   Time &  Temp  \\
+(min.) & ($^0$F) & (min.) & ($^0$F) \\
+\hline
+  4.0  &  126    &   24.0 & 115 \\
+  5.0  &  125    &   28.0 & 114 \\
+  7.0  &  123    &   31.0 & 113 \\
+ 12.0  &  120    &   34.0 & 112 \\
+ 14.0  &  119    &   37.5 & 111 \\
+ 16.0  &  118    &   41.0 & 110 \\
+ 20.0  &  116 & & \\
+\hline
+\end{tabular}
+\end{center}
+\caption{\label{rumford} The Rumford friction cooling data}
+\end{table}
+The data is given in Table~\ref{rumford} and may be read as a data frame from
+file \code{rumford.data}.
+
+\subsection*{Suggested analysis}
+This data is mainly of historical interest.  Handle similarly to the
+Chlorine data above.
+
+\clearpage\section{The jellyfish data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> \textit{Interactive Statistics}, Ed.\ Don McNeil.\\
+\textbf{Category:} \> Bivariate, two sample data.
+\end{tabbing}
+
+\subsection*{Description}
+Two samples of jellyfish, from Danger Island and Salamander Bay
+respectively, were measured for \code{length} and \code{width}.
+
+\subsection*{Data}
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{@{\protect\strutt}|*{4}{rr|}}
+\hline
+\multicolumn{4}{|c|}{Danger Island}&\multicolumn{4}{c|}
+{Salamander Bay}\\
+\hline
+   Width &  Length & Width &  Length & Width &  Length & Width &  Length \\
+\hline
+  6.0 & 9.0 &  11.0 & 13.0 &  12.0 & 14.0 &  16.0 & 20.0\\
+  6.5 & 8.0 &  11.0 & 14.0 &  13.0 & 17.0 &  16.0 & 20.0\\
+  6.5 & 9.0 &  11.0 & 14.0 &  14.0 & 16.5 &  16.0 & 21.0\\
+  7.0 & 9.0 &  12.0 & 13.0 &  14.0 & 19.0 &  16.5 & 19.0\\
+  7.0 & 10.0 &  13.0 & 14.0 &  15.0 & 16.0 &  17.0 & 20.0\\
+  7.0 & 11.0 &  14.0 & 16.0 &  15.0 & 17.0 &  18.0 & 19.0\\
+  8.0 & 9.5 &  15.0 & 16.0 &  15.0 & 18.0 &  18.0 & 19.0\\
+  8.0 & 10.0 &  15.0 & 16.0 &  15.0 & 18.0 &  18.0 & 20.0\\
+  8.0 & 10.0 &  15.0 & 19.0 &  15.0 & 19.0 &  19.0 & 20.0\\
+  8.0 & 11.0 &  16.0 & 16.0 &  15.0 & 21.0 &  19.0 & 22.0\\
+  9.0 & 11.0 &  &        &  16.0 & 18.0 &  20.0 & 22.0\\
+  10.0 & 13.0 & &        &  16.0 & 19.0 &  21.0 & 21.0\\
+\hline
+\end{tabular}
+\end{center}
+\caption{\label{jelly} The jellyfish data -- Danger Island and Salamander Bay}
+\end{table}
+The data is given in Table~\ref{jelly} and may be read as a data frame from
+file \code{jellyfish.data}.
+
+\subsection*{Suggested analysis}
+Plot the two samples and mark in their convex hulls.  Test for differences
+using Hotelling's $T^2$.  (A simple way of conducting the analysis is to
+regress a dummy variable for \emph{Location} on \emph{Length} and
+\emph{width} and to test the significance of both regression coefficients
+simultaneously.
+
+\clearpage\section{The Arch\ae{}ological pottery data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> Tubb, A. \emph{et al.} Arch\ae{}ometry, \textbf{22}, 153--171, (1980)\\
+\textbf{Category:} \>  Multivariate analysis
+\end{tabbing}
+
+\subsection*{Description}
+    The data arises from a chemical analysis of 26 samples of pottery found
+    at Romano-British kiln sites in Wales, Gwent and the New Forest.  The
+    variables describe the composition, in terms of various metals, and are
+    expressed as percentages of the oxides of the metals.
+
+    The metals are aluminium, iron, magnesium, calcium and sodium and the
+    sites are
+\begin{center}
+L: Llanederyn, \quad C: Caldicot\quad  I: Island Thorns\quad A: Ashley Rails
+\end{center}
+
+\subsection*{Data}
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{@{\protect\strutt}|*{2}{c|rrrrr|}}
+\hline
+ Site & Al & Fe & Mg & Ca & Na & Site & Al & Fe & Mg & Ca & Na\\
+\hline
+ L & 14.4 & 7.00 & 4.30 & 0.15 & 0.51 & C & 11.8 & 5.44 & 3.94 & 0.30 & 0.04\\
+ L & 13.8 & 7.08 & 3.43 & 0.12 & 0.17 & C & 11.6 & 5.39 & 3.77 & 0.29 & 0.06\\
+ L & 14.6 & 7.09 & 3.88 & 0.13 & 0.20 & I & 18.3 & 1.28 & 0.67 & 0.03 & 0.03\\
+ L & 11.5 & 6.37 & 5.64 & 0.16 & 0.14 & I & 15.8 & 2.39 & 0.63 & 0.01 & 0.04\\
+ L & 13.8 & 7.06 & 5.34 & 0.20 & 0.20 & I & 18.0 & 1.50 & 0.67 & 0.01 & 0.06\\
+ L & 10.9 & 6.26 & 3.47 & 0.17 & 0.22 & I & 18.0 & 1.88 & 0.68 & 0.01 & 0.04\\
+ L & 10.1 & 4.26 & 4.26 & 0.20 & 0.18 & I & 20.8 & 1.51 & 0.72 & 0.07 & 0.10\\
+ L & 11.6 & 5.78 & 5.91 & 0.18 & 0.16 & A & 17.7 & 1.12 & 0.56 & 0.06 & 0.06\\
+ L & 11.1 & 5.49 & 4.52 & 0.29 & 0.30 & A & 18.3 & 1.14 & 0.67 & 0.06 & 0.05\\
+ L & 13.4 & 6.92 & 7.23 & 0.28 & 0.20 & A & 16.7 & 0.92 & 0.53 & 0.01 & 0.05\\
+ L & 12.4 & 6.13 & 5.69 & 0.22 & 0.54 & A & 14.8 & 2.74 & 0.67 & 0.03 & 0.05\\
+ L & 13.1 & 6.64 & 5.51 & 0.31 & 0.24 & A & 19.1 & 1.64 & 0.60 & 0.10 & 0.03\\
+ L & 12.7 & 6.69 & 4.45 & 0.20 & 0.22&&&&&&\\
+         L  &     12.5  &     6.44  &    3.94 &     0.22 &   0.23&&&&&&\\
+\hline
+\end{tabular}
+\end{center}
+\caption{\label{pottery} The pottery composition data}
+\end{table}
+The data is given in Table~\ref{pottery} and may be read as a data frame from
+file \code{pottery.data}.
+
+\subsection*{Suggested analysis}
+Investigate both numerically and graphically using a simple discriminant
+analysis.  Exhibit the four samples using the first two discriminant
+functions as coordinate axes.  Summarise.
+
+
+\clearpage\section{The Beaujolais quality data}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \> Quoted in Weekes: \emph{A Genstat Primer}\\
+\textbf{Category:} \> Multivariate analsysis
+\end{tabbing}
+
+\subsection*{Description}
+Quality measurements for some identified samples of young Beaujolais.
+Extracted from Table 1 in M.~G.~Jackson, \emph{et al}: Red wine quality:
+correlations between colour, aroma and flavour and pigment and other
+parameters of young Beaujolais, \emph{Journal of Science of Food and
+Agriculture}, \textbf{29}, 715--727, (1978).
+
+\subsection*{Data}
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{@{\protect\strutt}|*{2}{c|rrrr|}}
+\hline
+Label & OQ & AC & pH & TSO & Label & OQ & AC & pH & TSO \\
+\hline
+ A & 13.54 & 1.51 & 3.36 & 13.8 & I &  12.25 & 1.32 & 3.38 & 1.4 \\
+ B & 12.58 & 1.35 & 3.15 & 5.2  & J &  14.04 & 1.52 & 3.61 & 4.5 \\
+ C & 11.83 & 1.09 & 3.30 & 10.6 & K &  12.67 & 1.62 & 3.38 & 0.4 \\
+ D & 12.83 & 1.15 & 3.41 & 2.2  & L &  13.54 & 1.57 & 3.55 & 7.9 \\
+ E & 12.83 & 1.32 & 3.44 & 2.3  & M &  13.75 & 1.63 & 3.34 & 6.3 \\
+ F & 12.12 & 1.23 & 3.31 & 10.5 & N &  9.63 & 0.78 & 3.19 &40.4 \\
+ G & 11.29 & 1.14 & 3.49 & 2.5  & O &  12.42 & 1.14 & 3.31 & 3.1 \\
+ H & 12.79 & 1.22 & 3.56 & 16.7 &   &   & & & \\
+\hline
+\end{tabular}
+\end{center}
+\caption{\label{wine} Quality measurements on young Beaujolais wine samples}
+\end{table}
+The data is given in Table~\ref{wine} and may be read as a data frame from
+file \code{beaujolais.data}.
+
+\subsection*{Suggested analysis}
+Look at ways of exhibiting the data graphically.  Consider a principal
+component analysis using the correlation matrix and look for any wild
+outliers.
+
+\clearpage\section{The painters data of de Piles}
+\begin{tabbing}
+\textbf{Category:} \= \kill
+\textbf{Source:} \>  Weekes: A Genstat Primer.\\
+\textbf{Category:} \> Multivariate Analysis: Discriminant Analysis.
+\end{tabbing}
+
+\subsection*{Description}
+The data shows the subjective assessment, on a 0--20 integer scale, of 54
+classical painters.  The painters were assessed on four characteristics:
+composition, drawing, colour and expression.  The data is due to the
+Eighteenth century art critic, de Piles.
+
+The School to which a painter belongs is indicated by a letter code as follows:
+\begin{center}
+{\newdimen\wid
+\setbox0=\hbox{Seventeenth Century\quad}
+\wid=\wd0
+\begin{tabular}{@{\protect\strutt}|*{2}{cp{\wid}|}}
+\hline
+A & Renaissance & E & Lombard          \\
+B & Mannerist   & F & Sixteenth Century\\
+C & Seicento    & G & Seventeenth Century \\
+D & Venetian    & H & French              \\
+\hline
+\end{tabular}
+}
+\end{center}
+%
+% Number of observations: 54
+% Number of variables: 5 (including the school)
+% Source: Davenport and Studdert-Kennedy, op.cit. "
+
+\subsection*{Data}
+{\def\0{\phantom{0}}
+\begin{table}[ht]
+\begin{center}
+\small
+\begin{tabular}{|l|cccc|c|}
+\hline
+                & Composition &  Drawing &  Colour  & Expression &  School\\
+\hline
+Da Udine        &     10      & \08    &  16    &  \03     &  A\\
+Da Vinci        &     15      &  16    & \04    &   14     &  A\\
+Del Piombo      &    \08      &  13    &  16    &  \07     &  A\\
+Del Sarto       &     12      &  16    & \09    &  \08     &  A\\
+Fr.\ Penni      &    \00      &  15    & \08    &  \00     &  A\\
+Guilio Romano   &     15      &  16    & \04    &   14     &  A\\
+Michelangelo    &    \08      &  17    & \04    &  \08     &  A\\
+Perino del Vaga &     15      &  16    & \07    &  \06     &  A\\
+Perugino        &    \04      &  12    &  10    &  \04     &  A\\
+Raphael         &     17      &  18    &  12    &   18     &  A\\
+\hline
+F. Zucarro      &     10      &  13    & \08    &  \08     &  B\\
+Fr.\ Salviata   &     13      &  15    & \08    &  \08     &  B\\
+Parmigiano      &     10      &  15    & \06    &  \06     &  B\\
+Primaticcio     &     15      &  14    & \07    &   10     &  B\\
+T. Zucarro      &     13      &  14    &  10    &  \09     &  B\\
+Volterra        &     12      &  15    & \05    &  \08     &  B\\
+\hline
+Barocci         &     14      &  15    & \06    &   10     &  C\\
+Cortona         &     16      &  14    &  12    &  \06     &  C\\
+Josepin         &     10      &  10    & \06    &  \02     &  C\\
+L. Jordaens     &     13      &  12    & \09    &  \06     &  C\\
+Testa           &     11      &  15    & \00    &  \06     &  C\\
+Vanius          &     15      &  15    &  12    &   13     &  C\\
+\hline
+Bassano         &    \06      & \08    &  17    &  \00     &  D\\
+Bellini         &    \04      & \06    &  14    &  \00     &  D\\
+Giorgione       &    \08      & \09    &  18    &  \04     &  D\\
+Murillo         &    \06      & \08    &  15    &  \04     &  D\\
+Palma Giovane   &     12      & \09    &  14    &  \06     &  D\\
+Palma Vecchio   &    \05      & \06    &  16    &  \00     &  D\\
+Pordenone       &    \08      &  14    &  17    &  \05     &  D\\
+Tintoretto      &     15      &  14    &  16    &  \04     &  D\\
+Titian          &     12      &  15    &  18    &  \06     &  D\\
+Veronese        &     15      &  10    &  16    &  \03     &  D\\
+\hline
+Albani          &     14      &  14    &  10    &  \06     &  E\\
+Caravaggio      &    \06      & \06    &  16    &  \00     &  E\\
+Corregio        &     13      &  13    &  15    &   12     &  E\\
+Domenichino     &     15      &  17    & \09    &   17     &  E\\
+Guercino        &     18      &  10    &  10    &  \04     &  E\\
+Lanfranco       &     14      &  13    &  10    &  \05     &  E\\
+The Carraci     &     15      &  17    &  13    &   13     &  E\\
+\hline
+Durer           &    \08      &  10    &  10    &  \08     &  F\\
+Holbein         &    \09      &  10    &  16    &   13     &  F\\
+Pourbus         &    \04      &  15    & \06    &  \06     &  F\\
+Van Leyden      &    \08      & \06    & \06    &  \04     &  F\\
+\hline
+Diepenbeck      &     11      &  10    &  14    &  \06     &  G\\
+J. Jordaens     &     10      & \08    &  16    &  \06     &  G\\
+Otho Venius     &     13      &  14    &  10    &   10     &  G\\
+Rembrandt       &     15      & \06    &  17    &   12     &  G\\
+Rubens          &     18      &  13    &  17    &   17     &  G\\
+Teniers         &     15      &  12    &  13    &  \06     &  G\\
+Van Dyck        &     15      &  10    &  17    &   13     &  G\\
+\hline
+Bourdon         &     10      & \08    & \08    &  \04     &  H\\
+Le Brun         &     16      &  16    & \08    &   16     &  H\\
+Le Suer         &     15      &  15    & \04    &   15     &  H\\
+Poussin         &     15      &  17    & \06    &   15     &  H\\
+\hline
+\end{tabular}
+\end{center}
+\caption{\label{paint} The subjective assessment data of de Piles}
+\end{table}
+}
+The data is given in Table~\ref{paint} and may be read as a data frame from
+file \code{painters.data}.
+
+\subsection*{Suggested analysis}
+Using a multivariate analysis of variance check for differences between
+schools.  Use the likelihood ratio test.  Also find the canonical
+$F-$statistics and discriminant functions.
+
+Plot the painters on the first two discriminant function axes and use the
+school symbol as a plotting character.  Mark in the convex hulls of the
+schools.  Using \code{identify()} find interactively some of the painers
+that appear to lie towards the extremes of the plot, or who deviate
+considerably from their school mean.
+
+\end{document}
+

@@ -44,7 +44,7 @@ Yield of wheat in Iowa for given year
 Multiple regression; diagnostics.
 }
 \source{
-CAED Report, 1964.  Quoted in Draper \& Smith.
+CAED Report, 1964.  Quoted in Draper & Smith.
 }
 \keyword{datasets}
 % Converted by Sd2Rd version 0.3-3.

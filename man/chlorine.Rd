@@ -1,7 +1,7 @@
 \name{chlorine}
 \alias{chlorine}
 \title{
-The Chlorine availability data.
+Chlorine Availability Data
 }
 \description{
 These industrial chemical data show the amount of chlorine
@@ -14,7 +14,7 @@ The data frame has two components: \code{Time} and \code{Chlor}.
 Nonlinear regression
 }
 \source{
-Draper \& Smith, "Applied Regression Analysis", adapted.
+Draper & Smith, "Applied Regression Analysis", adapted.
 }
 \keyword{datasets}
 % Converted by Sd2Rd version 0.3-3.

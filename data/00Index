@@ -1,20 +1,20 @@
-barley		A barley split plot field trial
-beaujolais	Beaujolais Quality Data
-chlorine	Chlorine availability data.
-cloud		Cloud Point Data
-genotype	Rat Genotype Data
-house		Tuggeranong House Price Data
-iowheat		Iowa Wheat Yield Data
-janka		Janka hardness data
-jellyfish	Jellyfish Data
-kalythos	Kalythos Blindness Data
-morley		Michaelson-Morley Speed of Light Data
-oil		Gasoline Yield Data
-painters	Painter's Data of de Piles
-pottery		Archaelogical Pottery Data
-sawheat		Yorke Penninsula Wheat Data
-rumford		Count Rumford's Friction Data
-snails		Snail Mortality Data
-steam		Saturated Steam Pressure Data
-stormer		Stormer Viscometer Data
-sugar		Fisher's Sugar Beet Data
+barley                   A barley split plot field trial
+beaujolais               The Beaujolais Quality Data
+chlorine                 Chlorine Availability Data
+cloud                    The Cloud Point Data
+genotype                 The Rat Genotype Data
+house                    The Tuggeranong House Price Data
+iowheat                  The Iowa Wheat Yield Data
+janka                    The Janka hardness data
+jellyfish                The Jellyfish Data
+kalythos                 The Kalythos Blindness Data
+morley                   Michaelson--Morley Speed of Light Data
+oil                      The Gasoline Yield Data
+painters                 The Painter's Data of de Piles
+pottery                  Archaelogical Pottery Data
+rumford                  Count Rumford's Friction Data
+sawheat                  Yorke Penninsula Wheat Data
+snails                   The Snail Mortality Data
+steam                    The Saturated Steam Pressure Data
+stormer                  The Stormer Viscometer Data
+sugar                    Fisher's Sugar Beet Data

@@ -13,6 +13,7 @@ against the bottom by a screw.  The bore was turned by a team of horses
 for 30 minutes, after which Lord Rumford ``suffered the thermometer to
 remain in its place nearly three quarters of an hour, observing and noting
 down, at small intervals of time, the temperature indicated by it''.
+}
 \value{
 \item{Time}{
 Time in minutes.
@@ -22,7 +23,7 @@ Temperature in degrees Farenheit.
 }}
 }
 \source{
-Bates \& Watts, "Nonlinear Regression Analysis".
+Bates & Watts, "Nonlinear Regression Analysis".
 }
 \keyword{datasets}
 % Converted by Sd2Rd version 0.3-3.

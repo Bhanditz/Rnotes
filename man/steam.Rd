@@ -19,7 +19,7 @@ Presure, in Pascals
 Nonlinear regression
 }
 \source{
-Quoted in Draper \& Smith: "Applied Regression Analysis"
+Quoted in Draper & Smith: "Applied Regression Analysis"
 }
 \keyword{datasets}
 % Converted by Sd2Rd version 0.3-3.
